@@ -12,8 +12,8 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license:
-  min_ansible_version:
+  license: BSD
+  min_ansible_version: 2.1
   #
   # Below are all platforms currently available. Just uncomment
   # the ones that apply to your role. If you don't see your
@@ -127,7 +127,10 @@ galaxy_info:
   #  - lenny
   #  - squeeze
   #  - wheezy
-  galaxy_tags: []
+  galaxy_tags: 
+    - init
+    - ubuntu
+    - setup
     # List tags for your role here, one per line. A tag is
     # a keyword that describes and categorizes the role.
     # Users find roles by searching for tags. Be sure to
