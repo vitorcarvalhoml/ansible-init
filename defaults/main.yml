@@ -1,0 +1,12 @@
+---
+# Defaults are used to set default values for all the role variables,
+# they usually act as customization points of the role.
+
+hostname: web.local
+public_key: '~/.ssh/id_rsa.pub'
+
+user:
+  name: operator
+  initial_groups: "sudo"
+  generate_ssh_key: true
+  shell: /bin/zsh

@@ -1,0 +1,41 @@
+---
+
+- name: update cache
+  apt: 
+    update_cache=yes
+    cache_valid_time=3600
+
+- name: install utilities
+  apt:
+    name={{ item }} state=present
+  with_items:
+    - zsh
+    - vim
+    - curl
+
+- name: update hostname
+  hostname:
+    name={{ hostname }}
+
+- name: create user
+  user:
+    name={{ user.name }}
+    groups={{ user.initial_groups }}
+    generate_ssh_key={{ user.generate_ssh_key }}
+    shell={{ user.shell }}
+    state=present
+
+- name: authorizes user {{ user.name }}
+  authorized_key:
+    user={{ user.name }}
+    key="{{ lookup('file', '{{ public_key }}') }}"
+
+- name: copy default zshrc file
+  copy:
+    src=zshrc
+    dest=/home/{{ user.name }}/.zshrc
+
+- name: copy hosts file
+  template:
+    src=hosts.j2
+    dest=/etc/hosts
